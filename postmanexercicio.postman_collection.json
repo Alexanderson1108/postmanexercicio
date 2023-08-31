@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "a4aac5fb-55c5-45c2-b3b5-0949b21a7c34",
+		"name": "postmanexercicio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29363196"
+	},
+	"item": [
+		{
+			"name": "usuario",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "usuario ja cadastrado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"alex anderson\",\r\n  \"email\": \"alex.ferreira@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/usuarios",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cadastro de usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Alex Anderson\",\r\n  \"email\": \"alex.ferreira@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/usuarios",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuario por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/usuarios/YsgVOCFRncvl7bHS",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"usuarios",
+						"YsgVOCFRncvl7bHS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"alex.ferreira@qa.com.br\",\r\n  \"password\": \"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/login",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alteração de cadastro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Alex Anderson de souza\",\r\n    \"email\": \"alex.ferreira@qa.com.br\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/usuarios/YsgVOCFRncvl7bHS",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"usuarios",
+						"YsgVOCFRncvl7bHS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exclusao do usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsZXhAZ21haWwuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZSIsImlhdCI6MTY5MzQwNjUxMCwiZXhwIjoxNjkzNDA3MTEwfQ.Oj426n6QeIqdZlFGVEjds9e2Bt28dsod0xACVf7i7A0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/usuarios/YsgVOCFRncvl7bHS",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"usuarios",
+						"YsgVOCFRncvl7bHS"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
